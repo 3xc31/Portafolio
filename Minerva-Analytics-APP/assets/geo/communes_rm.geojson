@@ -1,0 +1,39 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "id": "1",
+      "type": "Feature",
+      "properties": { "name": "Providencia" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-70.6300, -33.4200],
+            [-70.6000, -33.4200],
+            [-70.6000, -33.4500],
+            [-70.6300, -33.4500],
+            [-70.6300, -33.4200]
+          ]
+        ]
+      }
+    },
+    {
+      "id": "2",
+      "type": "Feature",
+      "properties": { "name": "Las Condes" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-70.5900, -33.4000],
+            [-70.5500, -33.4000],
+            [-70.5500, -33.4400],
+            [-70.5900, -33.4400],
+            [-70.5900, -33.4000]
+          ]
+        ]
+      }
+    }
+  ]
+}

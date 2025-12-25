@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "394116951991",
+    "project_id": "minerva-analytics-602e8",
+    "storage_bucket": "minerva-analytics-602e8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394116951991:android:03df1ba4a0ebf5d2b48232",
+        "android_client_info": {
+          "package_name": "cl.fenix.Minerva_Analytics"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzrU428iNw0bjy4Kdmy2NvApLkR9_lemY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
