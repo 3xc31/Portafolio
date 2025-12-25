@@ -1,0 +1,83 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="close-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Agregar Vendedor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content class="custom-card">
+      <form [formGroup]="agregarForm" (ngSubmit)="onSubmit()">
+        <ion-row>
+          <ion-input id="email" name="email" type="email" label="Correo" label-placement="floating" fill="solid"
+            formControlName="email" placeholder="Introduzca su Correo"></ion-input>
+        </ion-row>
+        <ion-row class="error-mesage">
+          <small *ngFor="let validation of validation_messages.email">
+            <div class="error" *ngIf="isSubmitted && agregarForm.get('email')?.hasError(validation.type)">
+              {{ validation.message }}
+            </div>
+          </small>
+        </ion-row>
+
+        <ion-row>
+          <ion-input id="password" name="password" label="Contraseña" label-placement="floating" fill="solid"
+            formControlName="password" placeholder="Introduzca su Contraseña" type="password"
+            clearOnEdit="false"></ion-input>
+        </ion-row>
+        <ion-row class="error-mesage">
+          <small *ngFor="let validation of validation_messages.password">
+            <div class="error" *ngIf="isSubmitted && agregarForm.get('password')?.hasError(validation.type)">
+              {{ validation.message }}
+            </div>
+          </small>
+        </ion-row>
+
+        <ion-row>
+          <ion-input id="password_conf" name="password_conf" label="Confirmar Contraseña"
+            formControlName="password_conf" label-placement="floating" fill="solid"
+            placeholder="Vuelva a introducir su Contraseña" type="password" clearOnEdit="false"></ion-input>
+        </ion-row>
+        <ion-row class="error-mesage">
+          <small *ngFor="let validation of validation_messages.password_conf">
+            <div class="error" *ngIf="isSubmitted && agregarForm.get('password_conf')?.hasError(validation.type)">
+              {{ validation.message }}
+            </div>
+          </small>
+        </ion-row>
+
+         <ion-row>
+          <ion-select aria-label="Pregunta secreta" interface="popover" placeholder="Selecciona una pregunta" required
+            required formControlName="pregunta" name="pregunta">
+            <ion-select-option *ngFor="let preg of arregloPreguntas" [value]="preg.id">
+              {{ preg.pregunta }}
+            </ion-select-option>
+          </ion-select>
+          
+          <div class="error" *ngFor="let validation of validation_messages.pregunta">
+            <div class="error" *ngIf="isSubmitted && agregarForm.get('pregunta')?.hasError(validation.type)">
+              {{ validation.message }}
+            </div>
+          </div>
+        </ion-row>
+        
+
+        <ion-row>
+          <ion-input id="resp_secreta" type="string" fill="solid" label="Respuesta" labelPlacement="floating" required
+            [clearInput]="true" formControlName="resp_secreta" name="resp_secreta"></ion-input>
+        </ion-row>
+
+        <div class="error" *ngFor="let validation of validation_messages.resp_secreta">
+          <div class="error" *ngIf="isSubmitted && agregarForm.get('resp_secreta')?.hasError(validation.type)">
+            {{ validation.message }}
+          </div>
+        </div>
+
+        <ion-button type="submit" expand="full">Registrar</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

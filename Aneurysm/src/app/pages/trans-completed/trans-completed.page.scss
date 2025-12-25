@@ -1,0 +1,29 @@
+ion-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .blahblah{
+    margin-inline: 1.4vh;
+    text-align: center;
+  }
+
+  ion-icon {
+    margin-block-start: 2.2vh;
+    margin-block-end: 1.2vh;
+  }
+  
+  h1 {
+    margin-bottom: 1vh;
+    font-style: oblique;
+    font-weight: bold;
+  }
+  
+  p {
+    margin-bottom: 1vh;
+  }
+  

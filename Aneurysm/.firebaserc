@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "aneurysm-b380d"
+  },
+  "targets": {
+    "aneurysm-b380d": {
+      "hosting": {
+        "app": [
+          "aneurysm-b380d"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Error 404</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">not_found</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+
+  <ion-row class="pad-t-md custom-center-xy custom-center">
+    <img alt="Ups" src="/assets/Aneurysm.png" />
+    <h4>Página no encontrada.</h4>
+    <ion-card-subtitle>Lo sentimos, la página que estás buscando no existe.</ion-card-subtitle>
+    <ion-button fill="outline" routerLink="/">Volver al inicio</ion-button>
+  </ion-row>
+
+</ion-content>

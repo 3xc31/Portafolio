@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="custom-center">
+      <strong>
+        Carrito
+      </strong>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!--   <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 3</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+
+
+  <ion-list *ngIf="arregloDetalleProducto.length !== 0">
+    <ion-item *ngFor="let productos of arregloDetalleProducto; let i = index">
+      <ion-card class="card-component">
+        <ion-row>
+          <ion-col size="3">
+            <img [src]="productos.foto">
+          </ion-col>
+          <ion-col size="9">
+            <ion-card-header>
+              <ion-card-title>{{ productos.nombre }}</ion-card-title>
+              <ion-card-subtitle>{{ productos.price | currency: "CLP" }}</ion-card-subtitle>
+              <ion-card-subtitle>Cantidad: {{productos.cantidad}}</ion-card-subtitle>
+              <ion-card-subtitle>
+                Subtotal: {{ productos.subtotal | currency: "CLP" }}
+              </ion-card-subtitle>
+            </ion-card-header>
+            <ion-button class="addcart" expand="full" (click)="borrar(productos.id)">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+  <ion-row *ngIf="arregloDetalleProducto.length === 0" class="pad-t-md custom-center-xy custom-center">
+    <img alt="Sadface" width="40%" src="assets/sadface.png" />
+    <h4>Tu carrito esta vacío.</h4>
+    <ion-card-subtitle>¡Busca y compra productos ahora!</ion-card-subtitle>
+  </ion-row>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button class="pad-sm pad-b-md" [disabled]="arregloDetalleProducto.length === 0" expand="block"
+      (click)="comprar()">Proceder al pago</ion-button>
+  </ion-toolbar>
+
+</ion-footer>
+<ion-alert [isOpen]="isAlertOpen" header="Compra realizada" subHeader="La compra se ha realizado correctamente"
+  [buttons]="alertButtons" (didDismiss)="setOpen(false)"></ion-alert>

@@ -1,0 +1,72 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="close-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrarse</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="custom-card">
+    <ion-card-header>
+      <ion-card-title>Registro</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <ion-row>
+          <ion-input id="email" type="email" fill="solid" label="Correo" labelPlacement="floating" required name="email"
+            formControlName="email"></ion-input>
+        </ion-row>
+
+        <ion-row class="error-mesage">
+          <div class="error" *ngFor="let validation of validation_messages.email">
+            <div class="error" *ngIf="isSubmitted && registerForm.get('email')?.hasError(validation.type)">
+              {{ validation.message }}
+            </div>
+          </div>
+        </ion-row>
+
+        <ion-row>
+          <ion-input id="password" type="password" fill="solid" label="Contraseña" labelPlacement="floating" required
+            [clearInput]="true" formControlName="password" name="password" clearOnEdit="false"></ion-input>
+        </ion-row>
+
+        <ion-row class="error-mesage">
+          <div class="error" *ngFor="let validation of validation_messages.password">
+            <div class="error" *ngIf="isSubmitted && registerForm.get('password')?.hasError(validation.type)">
+              {{ validation.message }}
+            </div>
+          </div>
+        </ion-row>
+
+        <ion-row>
+          <ion-input id="password_conf" type="password" fill="solid" label="Confirmar contraseña"
+            labelPlacement="floating" required [clearInput]="true" formControlName="password_conf" name="password_conf"
+            clearOnEdit="false"></ion-input>
+        </ion-row>
+
+        <ion-row class="error-mesage">
+          <div class="error" *ngFor="let validation of validation_messages.password_conf">
+            <div class="error" *ngIf="isSubmitted && registerForm.get('password_conf')?.hasError(validation.type)">
+              {{ validation.message }}
+            </div>
+          </div>
+        </ion-row>
+
+        <div id="btn_login">
+          <ion-row text-align="center">
+            <ion-col size="12">
+              <ion-button type="submit" fill="outline" expand="full" shape="round">Registrarse</ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-alert [isOpen]="isAlertOpen" header="Registro Completo"
+  subHeader="Te has registrado exitosamente. Ahora puedes iniciar sesion con tu cuenta." [buttons]="alertButtons"
+  (didDismiss)="setOpen(false)"></ion-alert>

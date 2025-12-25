@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="close-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Listar usuarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let usuario of arregloUsuario">
+      <ion-card class="card-component">
+        <ion-row>
+          <ion-col size="3">
+            <img src="{{ usuario.foto }}">
+          </ion-col>
+          <ion-col size="9">
+            <ion-card-header>
+              <ion-card-title>{{ usuario.correo }}</ion-card-title>
+              <ion-card-subtitle *ngIf="usuario.rol === 1">tipo de usuario: cliente</ion-card-subtitle>
+              <ion-card-subtitle *ngIf="usuario.rol === 2">tipo de usuario: vendedor</ion-card-subtitle>
+              <ion-card-subtitle *ngIf="usuario.rol === 3">tipo de usuario: administrador</ion-card-subtitle>
+            </ion-card-header>
+          </ion-col>
+        </ion-row>
+        <ion-row class="buttons">
+          <ion-button (click)="modificarAlert(usuario.id)">Modificar</ion-button>
+          <ion-button (click)="eliminarAlert(usuario.id)" class="delete-button">Eliminar</ion-button>
+        </ion-row>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+  <ion-alert [isOpen]="isAlertOpen" (didDismiss)="isOpen(false)"></ion-alert>
+
+</ion-content>

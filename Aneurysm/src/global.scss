@@ -1,0 +1,216 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import '@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+.sc-ion-searchbar-md-h {
+  --background: --var(--ion-card-background);
+  --box-shadow: none;
+}
+
+ion-toolbar {
+  ion-title {
+    padding-inline-start: 1vh;
+  }
+}
+
+.input-label-placement-floating.sc-ion-input-md-h input.sc-ion-input-md {
+  margin-left: 0.3vh;
+  margin-right: 0;
+  margin-top: 1px;
+  margin-bottom: 0;
+}
+
+.error-mesage{
+  margin-block-end: 1vh;
+}
+
+ion-item.sc-ion-textarea-md-h:not(.item-label),
+ion-item:not(.item-label) .sc-ion-textarea-md-h {
+  --padding-start: 0.5vh;
+}
+
+.item-inner {
+  --margin-block-end: 1.5vh;
+}
+
+ion-item.sc-ion-input-md-h:not(.item-label):not(.item-has-modern-input),
+ion-item:not(.item-label):not(.item-has-modern-input) .sc-ion-input-md-h {
+  --padding-start: 0.5vh;
+}
+
+.item.sc-ion-label-md-h, .item .sc-ion-label-md-h {
+  --color: #ffffff;
+}
+
+.custom-center {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.prod-card-2 {
+  margin: 10px;
+  width: auto;
+}
+
+.prod-card {
+  margin: 1px;
+  width: auto;
+}
+
+.prod-img {
+  width: 100%;
+}
+
+.custom-center-xy {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.pad-xs {
+  padding: 4px;
+}
+
+.pad-sm {
+  padding: 8px;
+}
+
+.pad-md {
+  padding: 16px;
+}
+
+.pad-lg {
+  padding: 24px;
+}
+
+.pad-xl {
+  padding: 32px;
+}
+
+.pad-xxl {
+  padding: 48px;
+}
+
+.pad-t-xs {
+  padding-top: 4px;
+}
+
+.pad-t-sm {
+  padding-top: 8px;
+}
+
+.pad-t-md {
+  padding-top: 16px;
+}
+
+.pad-t-lg {
+  padding-top: 24px;
+}
+
+.pad-t-xl {
+  padding-top: 32px;
+}
+
+.pad-t-xxl {
+  padding-top: 48px;
+}
+
+.pad-r-xs {
+  padding-right: 4px;
+}
+
+.pad-r-sm {
+  padding-right: 8px;
+}
+
+.pad-r-md {
+  padding-right: 16px;
+}
+
+.pad-r-lg {
+  padding-right: 24px;
+}
+
+.pad-r-xl {
+  padding-right: 32px;
+}
+
+.pad-r-xxl {
+  padding-right: 48px;
+}
+
+.pad-b-xs {
+  padding-bottom: 4px;
+}
+
+.pad-b-sm {
+  padding-bottom: 8px;
+}
+
+.pad-b-md {
+  padding-bottom: 16px;
+}
+
+.pad-b-lg {
+  padding-bottom: 24px;
+}
+
+.pad-b-xl {
+  padding-bottom: 32px;
+}
+
+.pad-b-xxl {
+  padding-bottom: 48px;
+}
+
+.pad-l-xs {
+  padding-left: 4px;
+}
+
+.pad-l-sm {
+  padding-left: 8px;
+}
+
+.pad-l-md {
+  padding-left: 16px;
+}
+
+.pad-l-lg {
+  padding-left: 24px;
+}
+
+.pad-l-xl {
+  padding-left: 32px;
+}
+
+.pad-l-xxl {
+  padding-left: 48px;
+}

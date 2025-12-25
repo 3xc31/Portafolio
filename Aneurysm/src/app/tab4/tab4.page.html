@@ -1,0 +1,173 @@
+<ion-header [translucent]="true">
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-row class="pad-t-md">
+    <ion-col></ion-col>
+    <ion-col class="custom-center" *ngIf="images !== '' && images !== null">
+      <ion-avatar>
+        <img alt="Profile Photo" [src]="images ? images : 'https://ionicframework.com/docs/img/demos/avatar.svg'" />
+      </ion-avatar>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+
+  <ion-refresher slot="fixed" #refresher (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  <ion-row class="pad-t-sm">
+    <ion-col></ion-col>
+    <ion-col *ngIf="isAuthenticated" size="auto" class="custom-center">
+      <h4>Bienvenido a Aneurysm</h4>
+    </ion-col>
+    <ion-col>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="!isAuthenticated" class="custom-center custom-row">
+    <ion-col size="auto">
+      <ion-button fill="solid" [routerLink]="['/login']">Iniciar Sesión</ion-button>
+      <ion-button fill="clear" [routerLink]="['/register']">Registrarse</ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="isAuthenticated" class="custom-center custom-row">
+    <ion-col size="auto">
+      <ion-button fill="clear" (click)="logout()">Cerrar Sesión</ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-alert [isOpen]="isAlertOpenLogin" header="Sesión Cerrada" subHeader="La Sesión se ha finalizado correctamente"
+    [buttons]="alertButtons1" (didDismiss)="setOpen(false)"></ion-alert>
+
+  <ion-list lines="none" *ngIf="isAuthenticated">
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label> Mi Perfil </ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-col size="auto">
+          <ion-icon name="person"></ion-icon>
+        </ion-col>
+        <ion-col size="auto"></ion-col>
+        <ion-label [routerLink]="['/tabs/tab4/user']">Mi información personal</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-col size="auto">
+          <ion-icon name="bag-check"></ion-icon>
+        </ion-col>
+        <ion-col size="auto"></ion-col>
+        <ion-label [routerLink]="['/record']">Mis Compras</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-col size="auto">
+          <ion-icon name="keypad"></ion-icon>
+        </ion-col>
+        <ion-col size="auto"></ion-col>
+        <ion-label [routerLink]="['/changepsswd']">Cambia la contraseña</ion-label>
+      </ion-item>
+    </ion-item-group>
+    <ion-item-group *ngIf="rol === 2 || rol === 1">
+      <ion-item-divider>
+        <ion-label> Gestion de Productos </ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-col size="auto">
+          <ion-icon name="bag-add"></ion-icon>
+        </ion-col>
+        <ion-col size="auto"></ion-col>
+        <ion-label [routerLink]="['/agregar']">Agregar producto</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-col size="auto">
+          <ion-icon name="list"></ion-icon>
+        </ion-col>
+        <ion-col size="auto"></ion-col>
+        <ion-label [routerLink]="['/listar']">Listar productos</ion-label>
+      </ion-item>
+    </ion-item-group>
+    <ion-item-group *ngIf="rol === 1">
+      <ion-item-divider>
+        <ion-label> Administración </ion-label>
+      </ion-item-divider>
+      <!-- <ion-item>
+        <ion-col size="auto">
+          <ion-icon name="person-add"></ion-icon>
+        </ion-col>
+        <ion-col size="auto"></ion-col>
+        <ion-label [routerLink]="['/agregar-vend']">Agregar vendedores</ion-label>
+      </ion-item> -->
+      <!-- <ion-item>
+        <ion-col size="auto">
+          <ion-icon name="bag-add"></ion-icon>
+        </ion-col>
+        <ion-col size="auto"></ion-col>
+        <ion-label [routerLink]="['/listar-us']">Listar usuarios</ion-label>
+      </ion-item> -->
+      <ion-item>
+        <ion-col size="auto">
+          <ion-icon name="pricetags"></ion-icon>
+        </ion-col>
+        <ion-col size="auto"></ion-col>
+        <ion-label fill="clear" id="present-alert" (click)="setOpen(true)">Agregar categorías</ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+
+  <!-- <ion-row *ngIf="userID === '' || userID === null">
+    <h1 class="mrg">Los usuarios registrados pueden hacer más.</h1>
+  </ion-row> -->
+
+  <ion-modal #modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Crear Categoría</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Cancelar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-card>
+          <ion-card-content class="custom-card">
+
+            <form [formGroup]="categoriaForm" (ngSubmit)="onSubmit()">
+              <ion-row>
+                <ion-input id="categoria" label="Nombre de la categoria" label-placement="floating" required
+                  formControlName="categoria" name="categoria" fill="solid" [value]="inputModel"
+                  placeholder="Introduzca el nombre de la categoria"></ion-input>
+              </ion-row>
+              <ion-row>
+                <small *ngFor="let validation of validation_messages.categoria">
+                  <div class="error" *ngIf="isSubmitted && categoriaForm.get('categoria')?.hasError(validation.type)">
+                    {{ validation.message }}
+                  </div>
+                </small>
+              </ion-row>
+
+              <ion-row text-align="center">
+                <ion-col size="12">
+                  <ion-button type="submit" expand="full" shape="round">Crear Categoria</ion-button>
+                </ion-col>
+              </ion-row>
+            </form>
+
+            <ion-list>
+              <ion-item *ngFor="let categoria of cate">
+                <h4>{{ categoria.Categoria}}</h4>
+              </ion-item>
+            </ion-list>
+
+            <ion-alert [isOpen]="isAlertOpen" header="Operación realizada"
+              subHeader="La categoria se ha agregado correctamente" [buttons]="alertButtons"
+              (didDismiss)="setOpen(false)"></ion-alert>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="close-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Recuperar Contrasela</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="custom-card">
+    <ion-card-header>
+      <ion-card-title>Ingresa tus datos de recuperación</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <ion-row>
+          <ion-input id="email" type="email" fill="solid" label="Correo" labelPlacement="floating" required name="email"
+            formControlName="email"></ion-input>
+        </ion-row>
+
+        <ion-row class="error-mesage">
+          <div class="error" *ngFor="let validation of validation_messages.email">
+            <div class="error" *ngIf="isSubmitted && registerForm.get('email')?.hasError(validation.type)">
+              {{ validation.message }}
+            </div>
+          </div>
+        </ion-row>
+
+        <div id="btn_login">
+          <ion-row text-align="center">
+            <ion-col size="12">
+              <ion-button type="submit" fill="outline" expand="full" shape="round">Recuperar contraseña</ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-alert [isOpen]="isAlertOpen" header="Solicitud Enviada" subHeader="La solicitud de reestablecimiento se ha enviado al correo."
+    [buttons]="alertButtons" (didDismiss)="setOpen(false)"></ion-alert>
+
+</ion-content>

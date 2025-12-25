@@ -1,0 +1,34 @@
+Para asegurar una buena experiencia y un correcto funcionamiento de la aplicación, por favor instala las siguiente librerías.
+--------------------
+
+Asegurate de tener instalado nodejs
+Instala ionic
+
+npm install -g @ionic/cli
+
+------------------
+Instala librerías
+..................
+
+npm install cordova-plugin-advanced-http 
+npm install @awesome-cordova-plugins/http
+
+Actualizar Ionic
+npm install @ionic/angular@latest
+
+----------------------
+| Plugin para Swiper |
+----------------------
+npm install swiper@latest
+
+npm install @capacitor/android@5.2.3
+
+---------------------
+| Instalar Firebase |
+---------------------
+npm install firebase
+firebase login:ci
+firebase projects:list
+firebase init
+npm install @angular/fire @firebase/auth @firebase/firestore --save 
+npm install -g firebase-tools

@@ -1,0 +1,132 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="juegos" (ionInput)="getItem() " animated="true" placeholder="Buscar"></ion-searchbar>
+    <ion-list class="custom-list-buscador">
+      <ion-item *ngFor="let producto of ProductosFilter" class="">
+        <ion-card class="card-component " (click)="showProducto(producto.id)">
+          <ion-row>
+            <ion-col size="3">
+              <ion-img alt="Prod" [src]="producto.foto"></ion-img>
+            </ion-col>
+            <ion-col size="9">
+              <ion-card-header>
+                <ion-card-title>{{ producto.name }}</ion-card-title>
+                <ion-card-subtitle>{{ producto.price | currency: "CLP" }}</ion-card-subtitle>
+              </ion-card-header>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-item>
+      <ion-item *ngIf="juegos !== ''">
+        <ion-row *ngIf="ProductosFilter.length === 0">
+          <p>No se ha encontrado nada :c</p>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" #refresher (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="card-banner"><app-banner></app-banner></div>
+
+  <ion-card-header>
+    <ion-card-title><strong>Los más vendidos</strong></ion-card-title>
+  </ion-card-header>
+  <swiper-container class="custom-swiper-game" (slidechange)="swiperSlideChanged($event)" [loop]="true"
+    [slidesPerView]="2">
+    <swiper-slide *ngFor="let juego of arregloProductos.slice(0,5)">
+      <ion-card class="prod-card" (click)="showProducto(juego.id)">
+        <div class="image-container">
+          <ion-img class="prod-img" alt="Prod" [src]="juego.foto"></ion-img>
+        </div>
+        <ion-card-header>
+          <ion-card-title>{{juego.name}}</ion-card-title>
+          <ion-card-subtitle>{{juego.price | currency:'CLP'}}</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
+
+  <!-- #si se cambia cate por cate.slice(0, 5) se limitan la cantidad de slice que muestra del listado,
+     aun puede mostrar todo de la lista pero hasta 5 #como para hacer un mostrar mas-->
+
+  <!-- 
+  <ion-card-header>
+    <ion-card-title><strong> Categorias </strong> </ion-card-title>
+  </ion-card-header>
+  <swiper-container class="custom-swiper-categories" (slidechange)="swiperSlideChanged($event)" [loop]="false"
+    [slidesPerView]="3">
+    <swiper-slide *ngFor="let categoria of cate">
+      <ion-card class="prod-card-2">
+        <img class="prod-img" [src]="img/{{categoria.image}}">
+        <ion-card-header>
+          <ion-card-title>{{categoria.name}}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
+  -->
+
+  <ion-card-header id="cataloge">
+    <ion-card-title><strong>Lista De juegos</strong></ion-card-title>
+  </ion-card-header>
+  <ion-row class="multiple-card">
+    <ion-col size="6" *ngFor="let juego of arregloProductos">
+      <ion-card class="prod-card" (click)="showProducto(juego.id)">
+        <div class="image-container">
+          <ion-img class="prod-img" alt="Prod" [src]="juego.foto"></ion-img>
+        </div>
+        <ion-card-header>
+          <ion-card-title>{{juego.name}}</ion-card-title>
+          <ion-card-subtitle>{{juego.price | currency:'CLP'}}</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+<!--   <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Subtítulo de la tarjeta</ion-card-subtitle>
+      <ion-card-title>Título de la tarjeta</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Manténgase cerca del corazón de la naturaleza... y aléjese, de vez en cuando,
+      a escalar una montaña o pasar una semana en el bosque. Lava tu espíritu.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-item>
+      <ion-icon name="pin" slot="start"></ion-icon>
+      <ion-label>ion-item in a card, icon left, button right</ion-label>
+      <ion-label>ion-item en una tarjeta con icono a la izquierda y botón a la derecha.</ion-label>
+      <ion-button fill="outline" slot="end">Ver</ion-button>
+    </ion-item>
+    <ion-card-content>
+      Esto es contenido, sin etiquetas de párrafo o encabezado,
+      dentro de un elemento de contenido de una ion-card.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-item href="#" class="activated">
+      <ion-icon name="wifi" slot="start"></ion-icon>
+      <ion-label>Enlace en tarjeta ion-item 1 .activated</ion-label>
+    </ion-item>
+    <ion-item href="#">
+      <ion-icon name="wine" slot="start"></ion-icon>
+      <ion-label>Enlace en tarjeta ion-item 2</ion-label>
+    </ion-item>
+    <ion-item class="activated">
+      <ion-icon name="warning" slot="start"></ion-icon>
+      <ion-label>Botón en tarjeta ion-item 1 .activated</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="walk" slot="start"></ion-icon>
+      <ion-label>Botón en tarjeta ion-item 2</ion-label>
+    </ion-item>
+  </ion-card> -->

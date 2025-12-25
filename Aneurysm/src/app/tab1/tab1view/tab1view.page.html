@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="close-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="pad-l-xs"> {{producto.name}} </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-card class="card-bann">
+    <ion-row>
+      <ion-col size="4">
+        <img [src]="producto.foto" alt="Prod Image">
+      </ion-col>
+      <ion-col size="8">
+        <ion-card-header>
+          <ion-card-title> {{producto.name}} </ion-card-title>
+          <ion-title> {{ producto.price | currency:'CLP'}} </ion-title>
+          <h4>{{ producto.stock }} copias disponibles</h4>
+        </ion-card-header>
+      </ion-col>
+      <ion-card-subtitle>
+        <ion-chip *ngFor="let cat of categorias; let i = index" [outline]="true">{{ cat }}</ion-chip>
+      </ion-card-subtitle>
+    </ion-row>
+    <ion-row>
+      <ion-col size="10">
+        <ion-button class="buynow" expand="full" (click)="comprar()">Comprar ahora</ion-button>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button class="addcart" expand="full" (click)="agregar()">
+          <ion-icon name="bag-handle-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card class="card-info">
+    <ion-card-header>
+      <ion-card-title>ACERCA DE ESTE JUEGO</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p style="white-space: pre-wrap">{{ producto.descripcion }}</p>
+    </ion-card-content>
+    <ion-card-header>
+      <ion-card-title>REQUISITOS DEL SISTEMA</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-col>
+        <ul>
+          <strong>Mínimo:</strong><br>
+          <ul class="bb_ul">
+            <li style="white-space: pre-wrap">{{producto.req_minimo}}</li>
+          </ul>
+        </ul>
+        <ul>
+          <strong>Recomendado:</strong><br>
+          <ul class="bb_ul">
+            <li style="white-space: pre-wrap">{{producto.req_recomendado}}</li>
+          </ul>
+        </ul>
+      </ion-col>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-alert [isOpen]="isAlertOpen" header="Compra realizada" subHeader="La compra se ha realizado correctamente"
+  [buttons]="alertButtons" (didDismiss)="setOpen(false)"></ion-alert>
